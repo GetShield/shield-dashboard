@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { Tabs, useUserStore } from "../state/user/useUserStore";
 import { useEffect } from "react";
+import { IoNotificationsSharp } from "react-icons/io5";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -56,7 +57,10 @@ export default function RootLayout({
                     Ancient Warriors Empire{" "}
                     <span className="text-white/50">| Shield Dashboard</span>
                   </p>
-                  <div className="h-10 w-10 rounded-full bg-white" />
+                  <div className="flex items-center space-x-8">
+                    <IoNotificationsSharp className="fill-white/50" />
+                    <div className="h-10 w-10 rounded-full bg-white" />
+                  </div>
                 </div>
                 {children}
               </div>

@@ -31,7 +31,7 @@ export default function Home() {
               <div className="flex w-full items-start justify-between">
                 <div className="flex flex-col">
                   <p className="font-medium text-white">Azuki</p>
-                  <p className="text-white/50">Owner</p>
+                  <p className="text-sm text-white/50">Owner</p>
                 </div>
                 <Button intent={"primary"} title={"Go"} />
               </div>
@@ -48,7 +48,7 @@ export default function Home() {
               <div className="flex w-full items-start justify-between">
                 <div className="flex flex-col">
                   <p className="font-medium text-white">Azuki</p>
-                  <p className="text-white/50">Owner</p>
+                  <p className="text-sm text-white/50">Owner</p>
                 </div>
                 <Button intent={"primary"} title={"Go"} />
               </div>
