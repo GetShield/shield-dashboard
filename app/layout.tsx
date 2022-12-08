@@ -31,7 +31,7 @@ export default function RootLayout({
           {" "}
           <div>
             <div className="relative z-10 flex h-screen w-full items-center justify-start bg-[#332396]">
-              <div className="flex h-full w-80 flex-col items-center bg-[#100B2E] ">
+              <div className="flex h-full w-80 flex-col items-center bg-secondary ">
                 <div className="p-8">
                   <Image src="/logo.png" alt="logo" width={200} height={200} />
                 </div>
