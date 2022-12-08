@@ -11,10 +11,15 @@ const button = cva("rounded-md px-4 py-2", {
 
 interface ButtonProps extends VariantProps<typeof button> {
   title: string;
+  onConfirm?: () => void;
 }
 
-const Button = ({ intent, title }: ButtonProps) => {
-  return <button className={button({ intent })}>{title}</button>;
+const Button = ({ intent = "primary", title, onConfirm }: ButtonProps) => {
+  return (
+    <button onClick={onConfirm} className={button({ intent })}>
+      {title}
+    </button>
+  );
 };
 
 export default Button;

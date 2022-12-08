@@ -11,7 +11,7 @@ const ContentWrapper = ({
 }) => {
   return (
     <div className="h-full w-full">
-      <h1 className="text-4xl text-white">{title}</h1>
+      <h1 className="mb-2 text-4xl text-white">{title}</h1>
       <p className="mb-4 text-white/50">{description}</p>
       {children}
     </div>

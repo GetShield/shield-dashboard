@@ -7,9 +7,13 @@ import { Poppins } from "@next/font/google";
 import Button from "./Button";
 import Tab from "./Tab";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { Tabs, useUserStore } from "../state/user/useUserStore";
+import { useEffect } from "react";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
+  subsets: ["latin-ext"],
 });
 
 export default function RootLayout({
@@ -30,7 +34,7 @@ export default function RootLayout({
         <div className="mx-auto">
           {" "}
           <div>
-            <div className="relative z-10 flex h-screen w-full items-center justify-start bg-[#332396]">
+            <div className="relative z-10 flex h-screen w-full items-center justify-start">
               <div className="flex h-full w-80 flex-col items-center bg-secondary ">
                 <div className="p-8">
                   <Image src="/logo.png" alt="logo" width={200} height={200} />
@@ -52,7 +56,7 @@ export default function RootLayout({
                     Ancient Warriors Empire{" "}
                     <span className="text-white/50">| Shield Dashboard</span>
                   </p>
-                  <div className="h-8 w-8 rounded-full bg-white" />
+                  <div className="h-10 w-10 rounded-full bg-white" />
                 </div>
                 {children}
               </div>
