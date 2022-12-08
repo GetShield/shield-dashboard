@@ -1,6 +1,7 @@
 "use client";
 
 import { cva, VariantProps } from "class-variance-authority";
+import Link from "next/link";
 import React from "react";
 import { Tabs, useUserStore } from "../state/user/useUserStore";
 
@@ -78,6 +79,21 @@ const tabsContent = {
       </svg>
     ),
   },
+  premium: {
+    title: "Get Premium",
+    icon: (
+      <svg
+        className="mr-4 h-8 w-8"
+        viewBox="0 0 36 28"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M33.3333 10.1667H35.25V0.583374H0.75V10.1667H2.66667C3.68333 10.1667 4.65835 10.5706 5.37724 11.2895C6.09613 12.0084 6.5 12.9834 6.5 14C6.5 15.0167 6.09613 15.9917 5.37724 16.7106C4.65835 17.4295 3.68333 17.8334 2.66667 17.8334H0.75V27.4167H35.25V17.8334H33.3333C32.3167 17.8334 31.3416 17.4295 30.6228 16.7106C29.9039 15.9917 29.5 15.0167 29.5 14C29.5 12.9834 29.9039 12.0084 30.6228 11.2895C31.3416 10.5706 32.3167 10.1667 33.3333 10.1667V10.1667ZM31.4167 21.4252V23.5834H4.58333V21.4252C6.23076 21.0016 7.69054 20.0422 8.73287 18.698C9.7752 17.3538 10.3409 15.701 10.3409 14C10.3409 12.299 9.7752 10.6463 8.73287 9.3021C7.69054 7.95787 6.23076 6.99845 4.58333 6.57488V4.41671H31.4167V6.57488C29.7692 6.99845 28.3095 7.95787 27.2671 9.3021C26.2248 10.6463 25.6591 12.299 25.6591 14C25.6591 15.701 26.2248 17.3538 27.2671 18.698C28.3095 20.0422 29.7692 21.0016 31.4167 21.4252Z" />
+        <path d="M20.2378 7.18729L12.5713 18.6871L15.7608 20.8135L23.4274 9.31364L20.2378 7.18729Z" />
+        <path d="M16.0833 8.25H12.25V12.0833H16.0833V8.25Z" />
+        <path d="M23.7503 15.9167H19.917V19.7501H23.7503V15.9167Z" />
+      </svg>
+    ),
+  },
 };
 
 const Tab = ({ tab }: { tab: Tabs }) => {
@@ -90,22 +106,24 @@ const Tab = ({ tab }: { tab: Tabs }) => {
   };
 
   return (
-    <button
-      onClick={handleSetActive}
-      className="flex w-full items-center justify-start pl-8"
-    >
-      <div
-        className={`absolute left-0 h-8 w-1 ${
-          isActive ? "bg-[#2287C3]" : "bg-transparent"
-        }`}
-      ></div>
-      <div className={`${isActive ? "fill-primary" : "fill-white/50"}`}>
-        {tabsContent[tab].icon}
-      </div>
-      <p className={`text-lg ${isActive ? "text-white" : "text-white/50"}`}>
-        {tabsContent[tab].title}
-      </p>
-    </button>
+    <Link href={`/${tab}`}>
+      <button
+        onClick={handleSetActive}
+        className="flex w-full items-center justify-start pl-8"
+      >
+        <div
+          className={`absolute left-0 h-8 w-1 ${
+            isActive ? "bg-[#2287C3]" : "bg-transparent"
+          }`}
+        ></div>
+        <div className={`${isActive ? "fill-primary" : "fill-white/50"}`}>
+          {tabsContent[tab].icon}
+        </div>
+        <p className={`text-lg ${isActive ? "text-white" : "text-white/50"}`}>
+          {tabsContent[tab].title}
+        </p>
+      </button>
+    </Link>
   );
 };
 

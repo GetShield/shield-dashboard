@@ -2,7 +2,13 @@ import create from "zustand";
 import produce from "immer";
 import { devtools } from "zustand/middleware";
 
-export type Tabs = "modules" | "dashboard" | "commands" | "admin" | "contact";
+export type Tabs =
+  | "modules"
+  | "dashboard"
+  | "commands"
+  | "admin"
+  | "contact"
+  | "premium";
 
 interface StoreState {
   activeTab: Tabs;

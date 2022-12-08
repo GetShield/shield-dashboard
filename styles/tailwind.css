@@ -5,3 +5,9 @@
 p {
   @apply text-xs tracking-wide lg:text-sm;
 }
+
+@layer base {
+  [data-nextjs-scroll-focus-boundary] {
+    display: contents;
+  }
+}
