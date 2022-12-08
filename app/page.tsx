@@ -1,10 +1,23 @@
 import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
+import Tab from "./Tab";
 
 export default function Home() {
   return (
     <div>
-      <div className="relative z-10 flex h-screen w-full items-center justify-center">
+      <div className="relative z-10 flex h-screen w-full items-center justify-start bg-[#332396]">
+        <div className="flex h-full w-80 flex-col items-center bg-[#100B2E] ">
+          <div className="p-8">
+            <Image src="/logo.png" alt="logo" width={200} height={200} />
+          </div>
+          <div className="mt-8 flex w-full flex-col space-y-8">
+            <Tab tab="dashboard" />
+            <Tab tab="modules" />
+            <Tab tab="commands" />
+            <Tab tab="admin" />
+            <Tab tab="contact" />
+          </div>
+        </div>
         <div className="flex flex-col items-start px-4 py-4">
           <p className="mb-6 text-8xl font-medium text-white">
             wagmi boilerplate

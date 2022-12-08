@@ -2,22 +2,27 @@ import create from "zustand";
 import produce from "immer";
 import { devtools } from "zustand/middleware";
 
+export type Tabs = "modules" | "dashboard" | "commands" | "admin" | "contact";
+
 interface StoreState {
-  address: string;
-  setAddress: (address: string) => void;
+  activeTab: Tabs;
+  setActiveTab: (tab: Tabs) => void;
 }
 
-const useUserStore = create<StoreState>(
+export const useUserStore = create<StoreState>(
   devtools(
     (set, get) => ({
-      address: "",
-      setAddress: (address) => set((state) => ({ address: address })),
+      activeTab: "modules",
+      setActiveTab: (tab: Tabs) => {
+        set(
+          produce((draft) => {
+            draft.activeTab = tab;
+          })
+        );
+      },
     }),
     {
       name: "userStore",
     }
   )
 );
-
-export const useAddress = useUserStore((state) => state.address);
-export const useSetAddress = useUserStore((state) => state.setAddress);
