@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Button from "../Button";
 import ContentWrapper from "../ContentWrapper";
 
@@ -8,7 +9,9 @@ export default function SettingsLayout({
 }) {
   return (
     <>
-      <p className="mb-4 text-xs text-white/50">Back to Modules</p>
+      <Link href="/modules" className="mb-4 text-xs text-white/50">
+        Back to Modules
+      </Link>
       <ContentWrapper
         title="Settings"
         description="Configure your server security settings for maximum protection."

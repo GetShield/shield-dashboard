@@ -61,14 +61,20 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="flex h-80 w-full flex-col rounded-md bg-secondary p-8">
+            <div className="relative flex h-80 w-full flex-col rounded-md bg-secondary p-8">
+              <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center rounded-md bg-black/50">
+                <p className="text-white">Coming Soon</p>
+              </div>
               <p className="mb-6 text-lg font-medium text-white">
                 Bot User Detection
               </p>
               <h1 className="text-4xl text-white">1,145</h1>
               <p className="text-white">user bots banned last week</p>
             </div>
-            <div className="flex h-80 w-full flex-col rounded-md bg-secondary p-8">
+            <div className="relative flex h-80 w-full flex-col rounded-md bg-secondary p-8">
+              <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center rounded-md bg-black/50">
+                <p className="text-white">Coming Soon</p>
+              </div>
               <p className="mb-6 text-lg font-medium text-white">
                 Blacklist & Restricted Users
               </p>
@@ -82,7 +88,10 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="flex h-80 w-full flex-col rounded-md bg-secondary p-8">
+            <div className="relative flex h-80 w-full flex-col rounded-md bg-secondary p-8">
+              <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center rounded-md bg-black/50">
+                <p className="text-white">Coming Soon</p>
+              </div>
               <p className="mb-6 text-lg font-medium text-white">Safe Mints</p>
               <p className="text-white">
                 Daily safe mints are{" "}
