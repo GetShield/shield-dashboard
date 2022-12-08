@@ -25,6 +25,7 @@ export default function RootLayout({
   return (
     <html className={poppins.className}>
       <head>
+        <title>Shield Dashboard</title>
         <style jsx global>{`
           html {
             font-family: ${poppins.style.fontFamily};
