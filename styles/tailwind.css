@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 p {
-  @apply text-xs tracking-wide lg:text-sm;
+  @apply tracking-wide;
 }
 
 @layer base {
