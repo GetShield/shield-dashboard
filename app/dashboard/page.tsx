@@ -15,7 +15,7 @@ export default function Home() {
         <Button intent={"secondary"} title={"Server Risks"} />
         <Button intent={"secondary"} title={"User Risks"} />
       </div>
-      {/* <div className="mt-8 w-full">
+      <div className="mt-8 w-full">
         <div className="h-full w-full rounded-md bg-[#100B2E] p-8">
           <h1 className="text-2xl text-white">Active Server Bots</h1>
           <div className="mt-8 grid grid-cols-6 gap-8">
@@ -55,7 +55,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
     </ContentWrapper>
   );
 }

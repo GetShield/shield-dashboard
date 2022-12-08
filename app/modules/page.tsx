@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Button from "../Button";
 import ContentWrapper from "../ContentWrapper";
-import ConfigureButton from "./ConfigureButton";
 
 export default function Home() {
   return (
@@ -26,7 +25,9 @@ export default function Home() {
                 Link scans are <span className="text-red-400">disabled</span>
               </p>
               <div className="flex h-full flex-col justify-end">
-                {/* <ConfigureButton /> */}
+                <Link href="/settings/simulation">
+                  <Button intent={"secondaryFull"} title={"Configure"} />
+                </Link>
               </div>
             </div>
             <div className="flex h-80 w-full flex-col rounded-md bg-secondary p-8">
@@ -39,7 +40,9 @@ export default function Home() {
               </p>
               <p className="text-white">Routing alerts to 2 admins</p>
               <div className="flex h-full flex-col justify-end">
-                <Button intent={"secondary"} title={"Configure"} />
+                <Link href="/settings/phishing">
+                  <Button intent={"secondaryFull"} title={"Configure"} />
+                </Link>
               </div>
             </div>
             <div className="flex h-80 w-full flex-col rounded-md bg-secondary p-8">
@@ -53,7 +56,9 @@ export default function Home() {
                 channel
               </p>
               <div className="flex h-full flex-col justify-end">
-                <Button intent={"secondary"} title={"Configure"} />
+                <Link href="/settings/alerts">
+                  <Button intent={"secondaryFull"} title={"Configure"} />
+                </Link>
               </div>
             </div>
             <div className="flex h-80 w-full flex-col rounded-md bg-secondary p-8">
@@ -72,11 +77,13 @@ export default function Home() {
               <h1 className="text-4xl text-white">6</h1>
               <p className="text-white">users with chat restrictions</p>
               <div className="flex h-full flex-col justify-end">
-                <Button intent={"secondary"} title={"Configure"} />
+                <Link href="/settings/restrictions">
+                  <Button intent={"secondaryFull"} title={"Configure"} />
+                </Link>
               </div>
             </div>
             <div className="flex h-80 w-full flex-col rounded-md bg-secondary p-8">
-              <p className="mb-6 text-lg font-medium text-white">Safe</p>
+              <p className="mb-6 text-lg font-medium text-white">Safe Mints</p>
               <p className="text-white">
                 Daily safe mints are{" "}
                 <span className="text-green-400">active</span>
@@ -85,7 +92,9 @@ export default function Home() {
                 Routing to <span className="text-sky-400">#alpha</span> channel
               </p>
               <div className="flex h-full flex-col justify-end">
-                <Button intent={"secondary"} title={"Configure"} />
+                <Link href="/settings/safe">
+                  <Button intent={"secondaryFull"} title={"Configure"} />
+                </Link>
               </div>
             </div>
           </div>

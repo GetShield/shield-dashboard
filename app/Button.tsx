@@ -5,6 +5,8 @@ const button = cva("rounded-md px-4 py-2", {
     intent: {
       primary: "bg-blue-500 text-white",
       secondary: "border border-white/50 text-white",
+      primaryFull: "bg-blue-500 text-white w-full",
+      secondaryFull: "border border-white/50 text-white w-full",
     },
   },
 });
