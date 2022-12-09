@@ -24,7 +24,9 @@ export default function Home() {
           <ChannelSelect currentChannel={data?.routeScansTo ?? ""} />
         </div>
         <div className="flex flex-col">
-          <p className="text-6xl font-medium text-primary">24</p>
+          <p className="text-6xl font-medium text-primary">
+            {data?.scanCount ?? 0}
+          </p>
           <p className="text-white">Shield scans performed all-time</p>
         </div>
         <div className="flex flex-col space-y-4">

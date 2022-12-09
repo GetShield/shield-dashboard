@@ -21,7 +21,9 @@ export default function Home() {
           <ChannelSelect currentChannel={data?.routePhishingLinksTo ?? ""} />
         </div>
         <div className="flex flex-col">
-          <p className="text-6xl font-medium text-primary">24</p>
+          <p className="text-6xl font-medium text-primary">
+            {data?.phishingLinkDetectionCount ?? 0}
+          </p>
           <p className="text-white">Phishing links blocked all-time</p>
         </div>
       </div>
