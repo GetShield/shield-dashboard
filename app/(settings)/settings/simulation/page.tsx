@@ -2,14 +2,47 @@
 
 import ChannelSelect from "../../../../components/ChannelSelect";
 import { Switch } from "@headlessui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommandToggle from "../../../../components/CommandToggle";
 import useGuildConfig from "../../../../lib/hooks/useGuildConfig";
+import Button from "../../../../components/Button";
+import { useUserStore } from "../../../../state/user/useUserStore";
+import {
+  guildConfigSchema,
+  ToggeableConfigOptions,
+} from "../../../../lib/types";
 
 export default function Home() {
   const { data } = useGuildConfig({
     guildId: "894636042773229588",
   });
+
+  const setGuildConfig = useUserStore((state) => state.setGuildConfig);
+  const guildConfig = useUserStore((state) => state.guildConfig);
+
+  const handleToggle = (value: ToggeableConfigOptions) => {
+    if (guildConfig) {
+      setGuildConfig({
+        ...guildConfig,
+        [value]: !guildConfig[value],
+      });
+    }
+  };
+
+  const handleSaveChanges = async () => {
+    if (guildConfig) {
+      guildConfigSchema.parse(guildConfig);
+
+      const res = await fetch(`/api/config/894636042773229588`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(guildConfig),
+      });
+      console.log(res.json());
+    }
+  };
 
   return (
     <div>
@@ -21,24 +54,28 @@ export default function Home() {
       <div className="grid w-full grid-cols-2 gap-8">
         <div className="flex flex-col space-y-4">
           <p className="text-white">Scan Results Channel</p>
-          <ChannelSelect currentChannel={data?.routeScansTo ?? ""} />
+          <ChannelSelect currentChannel={guildConfig?.routeScansTo ?? ""} />
         </div>
         <div className="flex flex-col">
           <p className="text-6xl font-medium text-primary">
-            {data?.scanCount ?? 0}
+            {guildConfig?.scanCount ?? 0}
           </p>
           <p className="text-white">Shield scans performed all-time</p>
         </div>
         <div className="flex flex-col space-y-4">
           <p className="text-white">Simulation Commands</p>
           <CommandToggle
-            enabled={data?.scan ?? false}
+            enabled={guildConfig?.scan ?? false}
+            onUserToggle={handleToggle}
+            toggleName="scan"
             command="!scan"
             description="Scans address for balance/transactions or domain name for phishing
 "
           />
           <CommandToggle
-            enabled={data?.simulateMint ?? false}
+            enabled={guildConfig?.simulateMint ?? false}
+            onUserToggle={handleToggle}
+            toggleName="simulateMint"
             command="!simulatemint"
             description="Simulate minting NFTs from any given contract
 
@@ -51,9 +88,19 @@ export default function Home() {
           </div> */}
           <p className="text-white">Advanced Settings</p>
 
-          <CommandToggle command="Smart contract scanning" />
-          <CommandToggle command="Domain link" />
-          <CommandToggle command="Rate limit" />
+          <CommandToggle
+            onUserToggle={handleToggle}
+            command="Smart contract scanning"
+          />
+          <CommandToggle onUserToggle={handleToggle} command="Domain link" />
+          <CommandToggle onUserToggle={handleToggle} command="Rate limit" />
+        </div>
+        <div className="col-span-2 flex w-full flex-row items-center justify-end">
+          <Button
+            onConfirm={handleSaveChanges}
+            intent={"primary"}
+            title={"Save"}
+          />
         </div>
       </div>
     </div>

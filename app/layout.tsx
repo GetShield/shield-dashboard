@@ -30,8 +30,8 @@ export default async function RootLayout({
         <div className="mx-auto">
           {" "}
           <div>
-            <div className="relative z-10 flex h-screen w-full items-center justify-start">
-              <div className="flex h-full w-80 flex-col items-center bg-secondary ">
+            <div className="relative z-10 flex min-h-screen w-full items-center justify-start pl-80">
+              <div className="fixed left-0 top-0 flex h-full w-80 flex-col items-center bg-secondary ">
                 <div className="p-8">
                   <Image src="/logo.png" alt="logo" width={200} height={200} />
                 </div>

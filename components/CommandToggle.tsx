@@ -1,13 +1,18 @@
 "use client";
 import { Switch } from "@headlessui/react";
 import React, { useState } from "react";
+import { ToggeableConfigOptions } from "../lib/types";
 
 const CommandToggle = ({
   enabled,
+  onUserToggle,
+  toggleName,
   command,
   description,
 }: {
   enabled?: boolean;
+  onUserToggle: (value: ToggeableConfigOptions) => void;
+  toggleName?: ToggeableConfigOptions;
   command: string;
   description?: string;
 }) => {
@@ -19,7 +24,11 @@ const CommandToggle = ({
       </div>
       <Switch
         checked={enabled}
-        // onChange={setEnabled}
+        onChange={() => {
+          if (toggleName) {
+            onUserToggle(toggleName);
+          }
+        }}
         className={`${
           enabled ? "bg-primary" : "border border-white/50"
         } relative inline-flex h-6 w-11 items-center rounded-full`}

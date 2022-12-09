@@ -1,6 +1,7 @@
 import create from "zustand";
 import produce from "immer";
 import { devtools } from "zustand/middleware";
+import { GuildConfig } from "../../lib/types";
 
 export type Tabs =
   | "modules"
@@ -21,6 +22,8 @@ interface StoreState {
   setActiveTab: (tab: Tabs) => void;
   selectedChannel: Channel;
   setSelectedChannel: (channel: Channel) => void;
+  guildConfig: GuildConfig | null;
+  setGuildConfig: (config: GuildConfig) => void;
 }
 
 export const useUserStore = create<StoreState>(
@@ -43,6 +46,14 @@ export const useUserStore = create<StoreState>(
         set(
           produce((draft) => {
             draft.selectedChannel = channel;
+          })
+        );
+      },
+      guildConfig: null,
+      setGuildConfig: (config: GuildConfig) => {
+        set(
+          produce((draft) => {
+            draft.guildConfig = config;
           })
         );
       },
