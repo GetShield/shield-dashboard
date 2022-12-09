@@ -7,7 +7,7 @@ const CommandToggle = ({
   description,
 }: {
   command: string;
-  description: string;
+  description?: string;
 }) => {
   const [enabled, setEnabled] = useState(false);
 
@@ -15,7 +15,7 @@ const CommandToggle = ({
     <div className="flex items-center justify-between rounded-md border border-white/50 bg-black p-8">
       <div className="flex flex-col justify-center">
         <p className="text-white">{command}</p>
-        <p className="text-sm text-white/50">{description}</p>
+        {description && <p className="text-sm text-white/50">{description}</p>}
       </div>
       <Switch
         checked={enabled}

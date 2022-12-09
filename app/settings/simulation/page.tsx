@@ -34,6 +34,16 @@ export default function Home() {
 "
           />
         </div>
+        <div className="relative flex flex-col space-y-4">
+          {/* <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center rounded-md bg-black/50">
+            <p className="text-white">Coming Soon</p>
+          </div> */}
+          <p className="text-white">Advanced Settings</p>
+
+          <CommandToggle command="Smart contract scanning" />
+          <CommandToggle command="Domain link" />
+          <CommandToggle command="Rate limit" />
+        </div>
       </div>
     </div>
   );

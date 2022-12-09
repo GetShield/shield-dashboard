@@ -1,6 +1,10 @@
 html,
 body {
-  background-color: #332396;
+  background: linear-gradient(
+    135deg,
+    hsla(248, 62%, 37%, 1) 0%,
+    hsla(248, 39%, 12%, 1) 100%
+  );
   padding: 0;
   margin: 0;
 }
