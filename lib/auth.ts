@@ -15,14 +15,15 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async session({ session, token, user }) {
+      let userObj = {};
+
       if (token && session?.user) {
-        session.user.id = token.sub;
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.picture;
+        userObj = {
+          id: token.sub,
+        };
       }
 
-      return session;
+      return { ...session, user: { ...userObj, ...session.user } };
     },
     async jwt({ token, account }) {
       // Persist the OAuth access_token to the token right after signin
