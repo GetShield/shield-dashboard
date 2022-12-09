@@ -1,4 +1,5 @@
 import { cva, VariantProps } from "class-variance-authority";
+import { MouseEventHandler } from "react";
 
 const button = cva("rounded-md px-4 py-2", {
   variants: {

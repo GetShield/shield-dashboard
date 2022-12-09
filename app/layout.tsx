@@ -1,37 +1,33 @@
-"use client";
-/* eslint-disable @next/next/no-head-element */
-
 import "../styles/globals.css";
 import "../styles/tailwind.css";
 import { Poppins } from "@next/font/google";
-import Button from "./Button";
+import Button from "../components/Button";
 import Tab from "./Tab";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Tabs, useUserStore } from "../state/user/useUserStore";
 import { useEffect } from "react";
 import { IoNotificationsSharp } from "react-icons/io5";
+import AuthButton from "../components/AuthButton";
+import { getCurrentUser } from "../lib/session";
+import { notFound } from "next/navigation";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin-ext"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const user = await getCurrentUser();
+  console.log(user);
+
   return (
     <html className={poppins.className}>
-      <head>
-        <title>Shield Dashboard</title>
-        <style jsx global>{`
-          html {
-            font-family: ${poppins.style.fontFamily};
-          }
-        `}</style>
-      </head>
+      <head />
       <body>
         <div className="mx-auto">
           {" "}
@@ -60,7 +56,19 @@ export default function RootLayout({
                   </p>
                   <div className="flex items-center space-x-8">
                     <IoNotificationsSharp className="fill-white/50" />
-                    <div className="h-10 w-10 rounded-full bg-white" />
+
+                    {user ? (
+                      <div className="relative h-10 w-10">
+                        <Image
+                          src={user.user?.image || "/azuki.png"}
+                          alt="avatar"
+                          fill
+                          className="rounded-full object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <AuthButton />
+                    )}
                   </div>
                 </div>
                 {children}

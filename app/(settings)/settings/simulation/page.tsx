@@ -1,7 +1,7 @@
-import ChannelSelect from "../ChannelSelect";
+import ChannelSelect from "../../../../components/ChannelSelect";
 import { Switch } from "@headlessui/react";
 import { useState } from "react";
-import CommandToggle from "./CommandToggle";
+import CommandToggle from "../../../../components/CommandToggle";
 
 export default function Home() {
   return (

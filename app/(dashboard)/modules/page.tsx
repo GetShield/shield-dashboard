@@ -1,8 +1,8 @@
 // "use client";
 
 import Link from "next/link";
-import Button from "../Button";
-import ContentWrapper from "../ContentWrapper";
+import Button from "../../../components/Button";
+import ContentWrapper from "../../../components/ContentWrapper";
 
 export default function Home() {
   return (

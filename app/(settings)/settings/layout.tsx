@@ -1,6 +1,5 @@
 import Link from "next/link";
-import Button from "../Button";
-import ContentWrapper from "../ContentWrapper";
+import ContentWrapper from "../../../components/ContentWrapper";
 
 export default function SettingsLayout({
   children,

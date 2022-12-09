@@ -3,7 +3,7 @@
 import { Listbox } from "@headlessui/react";
 import React from "react";
 import { IoArrowDownSharp, IoCheckmark } from "react-icons/io5";
-import { useUserStore } from "../../state/user/useUserStore";
+import { useUserStore } from "../state/user/useUserStore";
 
 const ChannelSelect = () => {
   const channels = [

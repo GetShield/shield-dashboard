@@ -1,8 +1,7 @@
 import Image from "next/image";
 import { useEffect } from "react";
-import { useUserStore } from "../../state/user/useUserStore";
-import Button from "../Button";
-import ContentWrapper from "../ContentWrapper";
+import Button from "../../../components/Button";
+import ContentWrapper from "../../../components/ContentWrapper";
 
 export default function Home() {
   return (

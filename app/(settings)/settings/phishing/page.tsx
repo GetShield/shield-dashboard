@@ -1,4 +1,4 @@
-import ChannelSelect from "../ChannelSelect";
+import ChannelSelect from "../../../../components/ChannelSelect";
 
 export default function Home() {
   return (
