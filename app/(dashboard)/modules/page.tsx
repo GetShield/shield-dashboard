@@ -1,10 +1,15 @@
-// "use client";
+"use client";
 
 import Link from "next/link";
 import Button from "../../../components/Button";
 import ContentWrapper from "../../../components/ContentWrapper";
+import useGuildConfig from "../../../lib/hooks/useGuildConfig";
 
 export default function Home() {
+  const { data } = useGuildConfig({
+    guildId: "894636042773229588",
+  });
+
   return (
     <ContentWrapper
       title="Shield Security Modules"
@@ -19,10 +24,10 @@ export default function Home() {
               </p>
               <p className="text-white">
                 Contract scans are{" "}
-                <span className="text-green-400">active</span>
+                <FeatureToggledText enabled={data?.contractScans} />
               </p>
               <p className="mb-8 text-white">
-                Link scans are <span className="text-red-400">disabled</span>
+                Link scans are <FeatureToggledText enabled={data?.linkScans} />
               </p>
               <div className="flex h-full flex-col justify-end">
                 <Link href="/settings/simulation">
@@ -36,9 +41,9 @@ export default function Home() {
               </p>
               <p className="text-white">
                 Phishing detection is{" "}
-                <span className="text-green-400">active</span>
+                <FeatureToggledText enabled={data?.phishingLinkDetection} />
               </p>
-              <p className="text-white">Routing alerts to 2 admins</p>
+              <p className="text-white">Routing alerts to 1 admin</p>
               <div className="flex h-full flex-col justify-end">
                 <Link href="/settings/phishing">
                   <Button intent={"secondaryFull"} title={"Configure"} />
@@ -49,10 +54,11 @@ export default function Home() {
               <p className="mb-6 text-lg font-medium text-white">Scam Alerts</p>
               <p className="text-white">
                 Daily scam alerts are{" "}
-                <span className="text-green-400">active</span>
+                <FeatureToggledText enabled={data?.phishingLinkDetection} />
               </p>
               <p className="text-white">
-                Routing to <span className="text-sky-400">#scam-alerts</span>{" "}
+                Routing to{" "}
+                <span className="text-sky-400">#{data?.routeScamAlertsTo}</span>{" "}
                 channel
               </p>
               <div className="flex h-full flex-col justify-end">
@@ -95,7 +101,7 @@ export default function Home() {
               <p className="mb-6 text-lg font-medium text-white">Safe Mints</p>
               <p className="text-white">
                 Daily safe mints are{" "}
-                <span className="text-green-400">active</span>
+                <span className="text-green-400">enabled</span>
               </p>
               <p className="text-white">
                 Routing to <span className="text-sky-400">#alpha</span> channel
@@ -112,3 +118,15 @@ export default function Home() {
     </ContentWrapper>
   );
 }
+
+const FeatureToggledText = ({ enabled = false }: { enabled?: boolean }) => {
+  return (
+    <>
+      {enabled ? (
+        <span className="text-green-400">enabled</span>
+      ) : (
+        <span className="text-red-400">disabled</span>
+      )}
+    </>
+  );
+};

@@ -1,25 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
-
-// const serverConfigSchema = z.object({
-//   total: z.number(),
-//   items: z.array(
-//     z.object({
-//       name: z.string(),
-//       scan: z.boolean(),
-//       scanCount: z.number(),
-//       simulateMint: z.boolean(),
-//       simulateMintCount: z.number(),
-//       phishingLinkDetection: z.boolean(),
-//       phishingLinkDetectionCount: z.number(),
-//       shieldAdmin: z.string(),
-//       shieldAdminCount: z.number(),
-//       routeScansTo: z.string(),
-//       routePhishingLinksTo: z.string(),
-//       routeScamAlertsTo: z.string(),
-//     })
-//   ),
-// });
+import { guildConfigSchema } from "../../../lib/types";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req;
@@ -31,23 +12,34 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           `https://20h8g13gde.execute-api.us-east-1.amazonaws.com/getServer?serverId=${req.query.guildId}`
         ).then((res) => res.json());
 
-        // serverConfigSchema.parse(data);
+        guildConfigSchema.parse(data);
 
         res.status(200).json(data);
       } catch (error) {
         res.status(400).json({ success: false });
       }
       break;
-    case "POST":
+    case "PUT":
       try {
+        console.log(req.body);
+        // guildConfigSchema.parse(req.body);
+
         const data = await fetch(
-          `https://20h8g13gde.execute-api.us-east-1.amazonaws.com/updateServer?serverId=${req.query.guildId}`,
+          `https://20h8g13gde.execute-api.us-east-1.amazonaws.com/updateServer`,
           {
-            method: "POST",
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
             body: JSON.stringify(req.body),
           }
-        ).then((res) => res.json());
+        );
+
+        console.log(data);
+
+        res.status(200).json(data);
       } catch (error) {
+        console.log(error);
         res.status(400).json({ success: false });
       }
       break;

@@ -1,30 +1,21 @@
+import { useEffect } from "react";
 import useSWR from "swr";
+import { useUserStore } from "../../state/user/useUserStore";
+import { GuildConfig } from "../types";
 
 const fetcher = async (url: string) =>
   await fetch(url).then((res) => res.json());
 
-interface GuildConfig {
-  total: number;
-  name: string;
-  scan: boolean;
-  scanCount: number;
-  simulateMint: boolean;
-  simulateMintCount: number;
-  phishingLinkDetection: boolean;
-  phishingLinkDetectionCount: number;
-  shieldAdmin: string;
-  shieldAdminCount: number;
-  routeScansTo: string;
-  routePhishingLinksTo: string;
-  routeScamAlertsTo: string;
-}
-
-export default function getGuildConfig({ guildId }: { guildId: string }): {
-  data: GuildConfig | undefined;
-} {
+export default function getGuildConfig({ guildId }: { guildId: string }) {
   const { data } = useSWR<GuildConfig>(`/api/config/${guildId}`, fetcher);
+  const setGuildConfig = useUserStore((state) => state.setGuildConfig);
+  const guildConfig = useUserStore((state) => state.guildConfig);
 
-  console.log(data);
+  useEffect(() => {
+    if (data && !guildConfig) {
+      setGuildConfig(data);
+    }
+  }, [data, guildConfig, setGuildConfig]);
 
   return {
     data,

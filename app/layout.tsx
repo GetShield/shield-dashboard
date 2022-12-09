@@ -6,7 +6,6 @@ import Tab from "./Tab";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Tabs, useUserStore } from "../state/user/useUserStore";
-import { useEffect } from "react";
 import { IoNotificationsSharp } from "react-icons/io5";
 import AuthButton from "../components/AuthButton";
 import { getCurrentUser } from "../lib/session";
@@ -31,17 +30,17 @@ export default async function RootLayout({
         <div className="mx-auto">
           {" "}
           <div>
-            <div className="relative z-10 flex h-screen w-full items-center justify-start">
-              <div className="flex h-full w-80 flex-col items-center bg-secondary ">
+            <div className="relative z-10 flex min-h-screen w-full items-start justify-start pl-80">
+              <div className="fixed left-0 top-0 flex h-full w-80 flex-col items-center bg-secondary ">
                 <div className="p-8">
                   <Image src="/logo.png" alt="logo" width={200} height={200} />
                 </div>
                 <div className="mt-8 flex w-full flex-col space-y-8">
-                  <Tab tab="dashboard" />
+                  <Tab disabled tab="dashboard" />
                   <Tab tab="modules" />
-                  <Tab tab="commands" />
-                  <Tab tab="admin" />
-                  <Tab tab="contact" />
+                  <Tab disabled tab="commands" />
+                  <Tab disabled tab="admin" />
+                  <Tab disabled tab="contact" />
                 </div>
                 <div className="flex h-full w-full flex-col  items-start justify-end pb-8">
                   <Tab tab="premium" />

@@ -43,7 +43,7 @@ const tabsContent = {
   },
 };
 
-const Tab = ({ tab }: { tab: Tabs }) => {
+const Tab = ({ tab, disabled = false }: { tab: Tabs; disabled?: boolean }) => {
   const activeTab = useUserStore((state) => state.activeTab);
   const setActiveTab = useUserStore((state) => state.setActiveTab);
   const isActive = activeTab === tab;
@@ -53,7 +53,10 @@ const Tab = ({ tab }: { tab: Tabs }) => {
   };
 
   return (
-    <Link href={`/${tab}`}>
+    <Link
+      className={`${disabled && "pointer-events-none opacity-50"}`}
+      href={`/${tab}`}
+    >
       <button
         onClick={handleSetActive}
         className="flex w-full items-center justify-start pl-8"
