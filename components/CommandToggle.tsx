@@ -3,14 +3,14 @@ import { Switch } from "@headlessui/react";
 import React, { useState } from "react";
 
 const CommandToggle = ({
+  enabled,
   command,
   description,
 }: {
+  enabled?: boolean;
   command: string;
   description?: string;
 }) => {
-  const [enabled, setEnabled] = useState(false);
-
   return (
     <div className="flex items-center justify-between rounded-md border border-white/50 bg-black p-8">
       <div className="flex flex-col justify-center">
@@ -19,7 +19,7 @@ const CommandToggle = ({
       </div>
       <Switch
         checked={enabled}
-        onChange={setEnabled}
+        // onChange={setEnabled}
         className={`${
           enabled ? "bg-primary" : "border border-white/50"
         } relative inline-flex h-6 w-11 items-center rounded-full`}

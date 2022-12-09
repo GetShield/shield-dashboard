@@ -1,13 +1,13 @@
 "use client";
 
 import { Listbox } from "@headlessui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { IoArrowDownSharp, IoCheckmark } from "react-icons/io5";
 import { useUserStore } from "../state/user/useUserStore";
 
-const ChannelSelect = () => {
+const ChannelSelect = ({ currentChannel }: { currentChannel: string }) => {
   const channels = [
-    { id: 1, name: "#alerts", unavailable: false },
+    { id: 1, name: `#${currentChannel}`, unavailable: false },
     { id: 2, name: "#general", unavailable: false },
     { id: 3, name: "#spam", unavailable: false },
     { id: 4, name: "#degen", unavailable: false },
@@ -16,7 +16,9 @@ const ChannelSelect = () => {
   const selectedChannel = useUserStore((state) => state.selectedChannel);
   const setSelectedChannel = useUserStore((state) => state.setSelectedChannel);
 
-  console.log(selectedChannel);
+  useEffect(() => {
+    setSelectedChannel(channels[0]);
+  }, [currentChannel]);
 
   return (
     <div className="w-72">

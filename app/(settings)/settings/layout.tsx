@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import ContentWrapper from "../../../components/ContentWrapper";
+import useGuildConfig from "../../../lib/hooks/useGuildConfig";
 
 export default function SettingsLayout({
   children,
