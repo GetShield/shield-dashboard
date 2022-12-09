@@ -10,7 +10,6 @@ import { useEffect } from "react";
 import { IoNotificationsSharp } from "react-icons/io5";
 import AuthButton from "../components/AuthButton";
 import { getCurrentUser } from "../lib/session";
-import { notFound } from "next/navigation";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
