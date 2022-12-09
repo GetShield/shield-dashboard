@@ -27,7 +27,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (method) {
     case "GET":
       try {
-        console.log(req.query.guildId);
         const data = await fetch(
           `https://20h8g13gde.execute-api.us-east-1.amazonaws.com/getServer?serverId=${req.query.guildId}`
         ).then((res) => res.json());
@@ -35,6 +34,19 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         // serverConfigSchema.parse(data);
 
         res.status(200).json(data);
+      } catch (error) {
+        res.status(400).json({ success: false });
+      }
+      break;
+    case "POST":
+      try {
+        const data = await fetch(
+          `https://20h8g13gde.execute-api.us-east-1.amazonaws.com/updateServer?serverId=${req.query.guildId}`,
+          {
+            method: "POST",
+            body: JSON.stringify(req.body),
+          }
+        ).then((res) => res.json());
       } catch (error) {
         res.status(400).json({ success: false });
       }
