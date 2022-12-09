@@ -9,6 +9,7 @@ import { Tabs, useUserStore } from "../state/user/useUserStore";
 import { IoNotificationsSharp } from "react-icons/io5";
 import AuthButton from "../components/AuthButton";
 import { getCurrentUser } from "../lib/session";
+import ServerText from "../components/ServerText";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -48,10 +49,7 @@ export default async function RootLayout({
               </div>
               <div className="flex h-full w-full flex-col items-start p-8">
                 <div className="mb-16 flex w-full items-center justify-between">
-                  <p className="text-white">
-                    Ancient Warriors Empire{" "}
-                    <span className="text-white/50">| Shield Dashboard</span>
-                  </p>
+                  <ServerText />
                   <div className="flex items-center space-x-8">
                     <IoNotificationsSharp className="fill-white/50" />
 
