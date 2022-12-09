@@ -19,19 +19,27 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         res.status(400).json({ success: false });
       }
       break;
-    case "POST":
+    case "PUT":
       try {
         console.log(req.body);
+        // guildConfigSchema.parse(req.body);
+
         const data = await fetch(
           `https://20h8g13gde.execute-api.us-east-1.amazonaws.com/updateServer`,
           {
-            method: "POST",
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
             body: JSON.stringify(req.body),
           }
-        ).then((res) => res.json());
+        );
+
+        console.log(data);
 
         res.status(200).json(data);
       } catch (error) {
+        console.log(error);
         res.status(400).json({ success: false });
       }
       break;

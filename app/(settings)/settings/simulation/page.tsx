@@ -31,16 +31,13 @@ export default function Home() {
 
   const handleSaveChanges = async () => {
     if (guildConfig) {
-      guildConfigSchema.parse(guildConfig);
-
       const res = await fetch(`/api/config/894636042773229588`, {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(guildConfig),
       });
-      console.log(res.json());
     }
   };
 

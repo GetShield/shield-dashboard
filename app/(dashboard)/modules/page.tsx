@@ -23,10 +23,11 @@ export default function Home() {
                 Simulation Commands
               </p>
               <p className="text-white">
-                Contract scans are <FeatureToggledText enabled={data?.scan} />
+                Contract scans are{" "}
+                <FeatureToggledText enabled={data?.contractScans} />
               </p>
               <p className="mb-8 text-white">
-                Link scans are <FeatureToggledText enabled={data?.scan} />
+                Link scans are <FeatureToggledText enabled={data?.linkScans} />
               </p>
               <div className="flex h-full flex-col justify-end">
                 <Link href="/settings/simulation">
