@@ -37,11 +37,11 @@ export default async function RootLayout({
                   <Image src="/logo.png" alt="logo" width={200} height={200} />
                 </div>
                 <div className="mt-8 flex w-full flex-col space-y-8">
-                  <Tab disabled tab="dashboard" />
+                  {/* <Tab disabled tab="dashboard" /> */}
                   <Tab tab="modules" />
-                  <Tab disabled tab="commands" />
+                  {/* <Tab disabled tab="commands" />
                   <Tab disabled tab="admin" />
-                  <Tab disabled tab="contact" />
+                  <Tab disabled tab="contact" /> */}
                 </div>
                 <div className="flex h-full w-full flex-col  items-start justify-end pb-8">
                   <Tab tab="premium" />
