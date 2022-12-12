@@ -6,8 +6,14 @@ import { GuildConfig } from "../types";
 const fetcher = async (url: string) =>
   await fetch(url).then((res) => res.json());
 
-export default function getGuildConfig({ guildId }: { guildId: string }) {
-  const { data } = useSWR<GuildConfig>(`/api/config/${guildId}`, fetcher);
+export default function getGuildConfig({ guildId }: { guildId: string }): {
+  data: GuildConfig | undefined;
+  triggerUpdate: () => Promise<GuildConfig | undefined>;
+} {
+  const { data, mutate } = useSWR<GuildConfig>(
+    `/api/config/${guildId}`,
+    fetcher
+  );
   const setGuildConfig = useUserStore((state) => state.setGuildConfig);
   const guildConfig = useUserStore((state) => state.guildConfig);
 
@@ -19,5 +25,6 @@ export default function getGuildConfig({ guildId }: { guildId: string }) {
 
   return {
     data,
+    triggerUpdate: mutate,
   };
 }

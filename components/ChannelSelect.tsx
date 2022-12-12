@@ -8,7 +8,6 @@ import { useUserStore } from "../state/user/useUserStore";
 const ChannelSelect = ({ currentChannel }: { currentChannel: string }) => {
   const channels = [
     { id: 1, name: `#${currentChannel}`, unavailable: false },
-    { id: 2, name: "#general", unavailable: false },
     { id: 3, name: "#spam", unavailable: false },
     { id: 4, name: "#degen", unavailable: false },
   ];
@@ -25,7 +24,7 @@ const ChannelSelect = ({ currentChannel }: { currentChannel: string }) => {
       <Listbox
         value={selectedChannel}
         onChange={(newSelected) => {
-          console.log("Listbox onChange internal: ", newSelected);
+          setSelectedChannel(channels[1]);
         }}
       >
         <div className="relative mt-1">

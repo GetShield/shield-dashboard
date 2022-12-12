@@ -4,7 +4,7 @@ import ChannelSelect from "../../../../components/ChannelSelect";
 import useGuildConfig from "../../../../lib/hooks/useGuildConfig";
 
 export default function Home() {
-  const { data } = useGuildConfig({
+  const { data, triggerUpdate } = useGuildConfig({
     guildId: "1",
   });
 

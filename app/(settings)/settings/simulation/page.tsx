@@ -13,9 +13,11 @@ import {
 } from "../../../../lib/types";
 
 export default function Home() {
-  const { data } = useGuildConfig({
+  const { data, triggerUpdate } = useGuildConfig({
     guildId: "1",
   });
+
+  const [changesSaved, setChangesSaved] = useState(false);
 
   const setGuildConfig = useUserStore((state) => state.setGuildConfig);
   const guildConfig = useUserStore((state) => state.guildConfig);
@@ -38,6 +40,12 @@ export default function Home() {
         },
         body: JSON.stringify(guildConfig),
       });
+      await triggerUpdate();
+
+      setChangesSaved(true);
+      setTimeout(() => {
+        setChangesSaved(false);
+      }, 5000);
     }
   };
 
@@ -93,6 +101,9 @@ export default function Home() {
           <CommandToggle onUserToggle={handleToggle} command="Rate limit" />
         </div>
         <div className="col-span-2 flex w-full flex-row items-center justify-end">
+          {changesSaved && (
+            <p className="mr-4 text-xs text-white">Changes saved.</p>
+          )}
           <Button
             onConfirm={handleSaveChanges}
             intent={"primary"}
