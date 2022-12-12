@@ -28,7 +28,7 @@ export default function Home() {
               </p>
               <p className="mb-8 text-white">
                 Link scans are{" "}
-                <FeatureToggledText enabled={data?.websiteLinkScan} />
+                <FeatureToggledText enabled={data?.websiteLinkScans} />
               </p>
               <div className="flex h-full flex-col justify-end">
                 <Link href="/settings/simulation">

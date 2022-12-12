@@ -16,7 +16,7 @@ export const guildConfigSchema = z.object({
   phishingLinkDetectionCount: z.number(),
   shieldAdmin: z.string(),
   contractScans: z.boolean(),
-  websiteLinkScan: z.boolean(),
+  websiteLinkScans: z.boolean(),
   routeScansTo: z.string(),
   routePhishingLinksTo: z.string(),
   routeScamAlertsTo: z.string(),
