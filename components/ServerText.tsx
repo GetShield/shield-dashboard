@@ -5,7 +5,7 @@ import useGuildConfig from "../lib/hooks/useGuildConfig";
 
 const ServerText = () => {
   const { data } = useGuildConfig({
-    guildId: "894636042773229588",
+    guildId: "1",
   });
 
   return (

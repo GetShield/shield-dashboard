@@ -7,7 +7,7 @@ import useGuildConfig from "../../../lib/hooks/useGuildConfig";
 
 export default function Home() {
   const { data } = useGuildConfig({
-    guildId: "894636042773229588",
+    guildId: "1",
   });
 
   return (

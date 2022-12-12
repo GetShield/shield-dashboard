@@ -14,7 +14,7 @@ import {
 
 export default function Home() {
   const { data } = useGuildConfig({
-    guildId: "894636042773229588",
+    guildId: "1",
   });
 
   const setGuildConfig = useUserStore((state) => state.setGuildConfig);
@@ -31,7 +31,7 @@ export default function Home() {
 
   const handleSaveChanges = async () => {
     if (guildConfig) {
-      const res = await fetch(`/api/config/894636042773229588`, {
+      const res = await fetch(`/api/config/1`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
