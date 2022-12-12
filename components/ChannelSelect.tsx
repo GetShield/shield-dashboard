@@ -8,8 +8,8 @@ import { useUserStore } from "../state/user/useUserStore";
 const ChannelSelect = ({ currentChannel }: { currentChannel: string }) => {
   const channels = [
     { id: 1, name: `#${currentChannel}`, unavailable: false },
-    { id: 3, name: "#spam", unavailable: false },
-    { id: 4, name: "#degen", unavailable: false },
+    { id: 3, name: "#degen", unavailable: false },
+    { id: 4, name: "#spam", unavailable: false },
   ];
 
   const selectedChannel = useUserStore((state) => state.selectedChannel);
