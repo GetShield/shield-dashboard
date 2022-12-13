@@ -4,10 +4,12 @@ import Link from "next/link";
 import Button from "../../../components/Button";
 import ContentWrapper from "../../../components/ContentWrapper";
 import useGuildConfig from "../../../lib/hooks/useGuildConfig";
+import useUserGuild from "../../../lib/hooks/useUserGuild";
 
 export default function Home() {
+  const { guildId } = useUserGuild();
   const { data } = useGuildConfig({
-    guildId: "1",
+    guildId,
   });
 
   return (
@@ -42,7 +44,7 @@ export default function Home() {
               </p>
               <p className="text-white">
                 Phishing detection is{" "}
-                <FeatureToggledText enabled={data?.phishingLinkDetection} />
+                <FeatureToggledText enabled={data?.phishingLinkDetectionEnabled} />
               </p>
               <p className="text-white">Routing alerts to 1 admin</p>
               <div className="flex h-full flex-col justify-end">
@@ -55,11 +57,11 @@ export default function Home() {
               <p className="mb-6 text-lg font-medium text-white">Scam Alerts</p>
               <p className="text-white">
                 Daily scam alerts are{" "}
-                <FeatureToggledText enabled={data?.phishingLinkDetection} />
+                <FeatureToggledText enabled={data?.scanEnabled} />
               </p>
               <p className="text-white">
                 Routing to{" "}
-                <span className="text-sky-400">#{data?.routeScamAlertsTo}</span>{" "}
+                <span className="text-sky-400">#{data?.scanDiscordChannelId}</span>{" "}
                 channel
               </p>
               <div className="flex h-full flex-col justify-end">

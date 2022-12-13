@@ -9,7 +9,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     case "GET":
       try {
         const data = await fetch(
-          `https://20h8g13gde.execute-api.us-east-1.amazonaws.com/getServer?serverId=${req.query.guildId}`
+          `https://api.getshield.xyz/getServer?serverId=${req.query.guildId}`
         ).then((res) => res.json());
 
         guildConfigSchema.parse(data);
@@ -24,16 +24,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         console.log(req.body);
         // guildConfigSchema.parse(req.body);
 
-        const data = await fetch(
-          `https://20h8g13gde.execute-api.us-east-1.amazonaws.com/updateServer`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(req.body),
-          }
-        );
+        const data = await fetch(`https://api.getshield.xyz/updateServer`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(req.body),
+        });
 
         console.log(data);
 

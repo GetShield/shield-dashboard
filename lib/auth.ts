@@ -8,6 +8,8 @@ export const authOptions: NextAuthOptions = {
     DiscordProvider({
       clientId: process.env.DISCORD_CLIENT_ID as string,
       clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
+      authorization:
+        "https://discord.com/api/oauth2/authorize?client_id=1049475611275571251&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fcallback%2Fdiscord&response_type=code&scope=identify%20email%20guilds",
     }),
     // ...add more providers here
   ],
@@ -16,15 +18,16 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async session({ session, token, user }) {
-      let userObj = {};
+      session.accessToken = token.accessToken as string;
 
-      if (token && session?.user) {
-        userObj = {
-          id: token.sub,
-        };
+      if (token) {
+        session.user.id = token.sub as string;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image = token.picture;
       }
 
-      return { ...session, user: { ...userObj, ...session.user } };
+      return session;
     },
     async jwt({ token, account }) {
       // Persist the OAuth access_token to the token right after signin

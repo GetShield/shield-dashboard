@@ -11,10 +11,12 @@ import {
   guildConfigSchema,
   ToggeableConfigOptions,
 } from "../../../../lib/types";
+import useUserGuild from "../../../../lib/hooks/useUserGuild";
 
 export default function Home() {
+  const { guildId } = useUserGuild();
   const { data, triggerUpdate } = useGuildConfig({
-    guildId: "1",
+    guildId,
   });
 
   const [changesSaved, setChangesSaved] = useState(false);
@@ -33,7 +35,7 @@ export default function Home() {
 
   const handleSaveChanges = async () => {
     if (guildConfig) {
-      const res = await fetch(`/api/config/1`, {
+      const res = await fetch(`/api/config/${guildId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +61,9 @@ export default function Home() {
       <div className="grid w-full grid-cols-2 gap-8">
         <div className="flex flex-col space-y-4">
           <p className="text-white">Scan Results Channel</p>
-          <ChannelSelect currentChannel={guildConfig?.routeScansTo ?? ""} />
+          <ChannelSelect
+            currentChannel={guildConfig?.scanDiscordChannelId ?? ""}
+          />
         </div>
         <div className="flex flex-col">
           <p className="text-6xl font-medium text-primary">
@@ -70,17 +74,17 @@ export default function Home() {
         <div className="flex flex-col space-y-4">
           <p className="text-white">Simulation Commands</p>
           <CommandToggle
-            enabled={guildConfig?.scan ?? false}
+            enabled={guildConfig?.scanEnabled ?? false}
             onUserToggle={handleToggle}
-            toggleName="scan"
+            toggleName="scanEnabled"
             command="!scan"
             description="Scans address for balance/transactions or domain name for phishing
 "
           />
           <CommandToggle
-            enabled={guildConfig?.simulateMint ?? false}
+            enabled={guildConfig?.simulateMintEnabled ?? false}
             onUserToggle={handleToggle}
-            toggleName="simulateMint"
+            toggleName="simulateMintEnabled"
             command="!simulatemint"
             description="Simulate minting NFTs from any given contract
 

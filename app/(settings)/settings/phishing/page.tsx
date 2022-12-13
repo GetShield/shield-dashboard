@@ -2,10 +2,12 @@
 
 import ChannelSelect from "../../../../components/ChannelSelect";
 import useGuildConfig from "../../../../lib/hooks/useGuildConfig";
+import useUserGuild from "../../../../lib/hooks/useUserGuild";
 
 export default function Home() {
+  const { guildId } = useUserGuild();
   const { data, triggerUpdate } = useGuildConfig({
-    guildId: "1",
+    guildId,
   });
 
   return (
@@ -18,7 +20,9 @@ export default function Home() {
       <div className="grid w-full grid-cols-2 gap-8">
         <div className="flex flex-col space-y-4">
           <p className="text-white">Phishing Reports Channel</p>
-          <ChannelSelect currentChannel={data?.routePhishingLinksTo ?? ""} />
+          <ChannelSelect
+            currentChannel={data?.phishingDiscordChannelId ?? ""}
+          />
         </div>
         <div className="flex flex-col">
           <p className="text-6xl font-medium text-primary">

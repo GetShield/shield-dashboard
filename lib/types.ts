@@ -1,25 +1,26 @@
 import { z } from "zod";
 
 export type ToggeableConfigOptions =
-  | "scan"
-  | "simulateMint"
-  | "phishingLinkDetection";
+  | "scanEnabled"
+  | "simulateMintEnabled"
+  | "phishingLinkDetectionEnabled";
 
 export const guildConfigSchema = z.object({
-  serverId: z.string(),
-  name: z.string(),
-  scan: z.boolean(),
+  id: z.string(),
+  discordGuildId: z.string(),
+  discordGuildName: z.boolean(),
+  adminDiscordRoleId: z.number().nullable(),
+  scanEnabled: z.boolean(),
   scanCount: z.number(),
-  simulateMint: z.boolean(),
+  scanDiscordChannelId: z.string().nullable(),
+  simulateMintEnabled: z.boolean(),
   simulateMintCount: z.number(),
-  phishingLinkDetection: z.boolean(),
+  simulateDiscordChannelId: z.string().nullable(),
+  phishingLinkDetectionEnabled: z.boolean(),
   phishingLinkDetectionCount: z.number(),
-  shieldAdmin: z.string(),
+  phishingDiscordChannelId: z.string().nullable(),
   contractScans: z.boolean(),
   websiteLinkScans: z.boolean(),
-  routeScansTo: z.string(),
-  routePhishingLinksTo: z.string(),
-  routeScamAlertsTo: z.string(),
 });
 
 export type GuildConfig = z.infer<typeof guildConfigSchema>;
