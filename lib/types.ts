@@ -6,10 +6,10 @@ export type ToggeableConfigOptions =
   | "phishingLinkDetectionEnabled";
 
 export const guildConfigSchema = z.object({
-  id: z.string(),
+  id: z.number(),
   discordGuildId: z.string(),
-  discordGuildName: z.boolean(),
-  adminDiscordRoleId: z.number().nullable(),
+  discordGuildName: z.string(),
+  adminDiscordRoleId: z.string().nullable(),
   scanEnabled: z.boolean(),
   scanCount: z.number(),
   scanDiscordChannelId: z.string().nullable(),
