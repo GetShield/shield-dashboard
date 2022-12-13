@@ -4,16 +4,12 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import React from "react";
 import Button from "./Button";
 
-const AuthButton = () => {
+const LogoutButton = () => {
   return (
     <>
-      <Button
-        intent={"primary"}
-        onConfirm={() => signIn("discord")}
-        title="Sign In"
-      />
+      <Button intent={"primary"} onConfirm={() => signOut()} title="Sign Out" />
     </>
   );
 };
 
-export default AuthButton;
+export default LogoutButton;

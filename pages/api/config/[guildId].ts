@@ -21,8 +21,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       break;
     case "PUT":
       try {
-        console.log(req.body);
-        // guildConfigSchema.parse(req.body);
+        guildConfigSchema.parse(req.body);
 
         const data = await fetch(`https://api.getshield.xyz/updateServer`, {
           method: "PUT",

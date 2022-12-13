@@ -7,9 +7,11 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { Tabs, useUserStore } from "../state/user/useUserStore";
 import { IoNotificationsSharp } from "react-icons/io5";
-import AuthButton from "../components/AuthButton";
+import AuthButton from "../components/LoginButton";
 import { getCurrentUser } from "../lib/session";
 import ServerText from "../components/ServerText";
+import LogoutButton from "../components/LogoutButton";
+import LoginButton from "../components/LoginButton";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -54,16 +56,19 @@ export default async function RootLayout({
                     <IoNotificationsSharp className="fill-white/50" />
 
                     {user ? (
-                      <div className="relative h-10 w-10">
-                        <Image
-                          src={user.user?.image || "/azuki.png"}
-                          alt="avatar"
-                          fill
-                          className="rounded-full object-cover"
-                        />
-                      </div>
+                      <>
+                        <div className="relative h-10 w-10">
+                          <Image
+                            src={user.user?.image || "/azuki.png"}
+                            alt="avatar"
+                            fill
+                            className="rounded-full object-cover"
+                          />
+                        </div>
+                        <LogoutButton />
+                      </>
                     ) : (
-                      <AuthButton />
+                      <LoginButton />
                     )}
                   </div>
                 </div>
