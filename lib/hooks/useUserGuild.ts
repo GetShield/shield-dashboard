@@ -12,9 +12,7 @@ export default function useUserGuild(): {
 } {
   const { data, mutate } = useSWR(`/api/user/guilds`, fetcher);
 
-  console.log("data", data);
-
   return {
-    guildId: "1000",
+    guildId: data ? data[0].id : "",
   };
 }

@@ -8,13 +8,29 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await unstable_getServerSession(req, res, authOptions);
 
   try {
-    const guildRes = await fetch(`https://discord.com/api/users/@me/guilds`, {
-      headers: {
-        Authorization: `Bearer ${session?.accessToken}`,
-      },
-    }).then((res) => res.json());
+    const allBotGuildsRes: any[] = await fetch(
+      `https://discord.com/api/users/@me/guilds`,
+      {
+        headers: {
+          Authorization: `Bot ${process.env.DISCORD_BOT_TOKEN}`,
+        },
+      }
+    ).then((res) => res.json());
 
-    res.status(200).json(guildRes);
+    const allUserGuildsRes: any[] = await fetch(
+      `https://discord.com/api/users/@me/guilds`,
+      {
+        headers: {
+          Authorization: `Bearer ${session?.accessToken}`,
+        },
+      }
+    ).then((res) => res.json());
+
+    const allGuildsRes = allBotGuildsRes.filter((guild) => {
+      return allUserGuildsRes.some((userGuild) => userGuild.id === guild.id);
+    });
+
+    res.status(200).json(allGuildsRes);
   } catch (error) {
     res.status(400).json({ success: false });
   }

@@ -32,8 +32,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           body: JSON.stringify(req.body),
         });
 
-        console.log(data);
-
         res.status(200).json(data);
       } catch (error) {
         console.log(error);
