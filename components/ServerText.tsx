@@ -10,7 +10,7 @@ const ServerText = () => {
 
   return (
     <p className="text-white">
-      {data?.name ?? ""}{" "}
+      {data?.discordGuildName ?? ""}{" "}
       <span className="text-white/50">| Shield Dashboard</span>
     </p>
   );
