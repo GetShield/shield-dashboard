@@ -2,10 +2,13 @@
 
 import React from "react";
 import useGuildConfig from "../lib/hooks/useGuildConfig";
+import useUserGuild from "../lib/hooks/useUserGuild";
 
 const ServerText = () => {
+  const { guildId } = useUserGuild();
+
   const { data } = useGuildConfig({
-    guildId: "1",
+    guildId,
   });
 
   return (
