@@ -4,5 +4,14 @@ module.exports = {
 	reactStrictMode: false,
 	typescript: {
 		ignoreBuildErrors: true
+	},
+	async redirects() {
+		return [
+			{
+				source: '/',
+				destination: '/modules',
+				permanent: false
+			}
+		]
 	}
 }

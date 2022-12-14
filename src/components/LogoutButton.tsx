@@ -1,7 +1,5 @@
 'use client'
 
-import React from 'react'
-import { vApp } from '../state/valtio/app'
 import { vUser } from '../state/valtio/user'
 import Button from './Button'
 
@@ -15,6 +13,7 @@ const LogoutButton = () => {
 						access: null,
 						refresh: null
 					}
+					setTimeout(() => window.location.reload(), 10)
 				}}
 				title="Sign Out"
 			/>
