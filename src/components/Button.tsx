@@ -1,7 +1,6 @@
 import { cva, VariantProps } from 'class-variance-authority'
-import { MouseEventHandler } from 'react'
 
-const button = cva('rounded-md px-4 py-2', {
+export const buttonClasses = cva('rounded-md px-4 py-2 text-center', {
 	variants: {
 		intent: {
 			primary: 'bg-blue-500 text-white',
@@ -12,14 +11,14 @@ const button = cva('rounded-md px-4 py-2', {
 	}
 })
 
-interface ButtonProps extends VariantProps<typeof button> {
+interface ButtonProps extends VariantProps<typeof buttonClasses> {
 	title: string
 	onConfirm?: () => void
 }
 
 const Button = ({ intent = 'primary', title, onConfirm }: ButtonProps) => {
 	return (
-		<button onClick={onConfirm} className={button({ intent })}>
+		<button onClick={onConfirm} className={buttonClasses({ intent })}>
 			{title}
 		</button>
 	)

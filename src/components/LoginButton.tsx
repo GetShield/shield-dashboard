@@ -1,7 +1,7 @@
 'use client'
 
-import { useSession, signIn, signOut } from 'next-auth/react'
 import React from 'react'
+import { AppEnv } from '../env'
 import Button from './Button'
 
 const LoginButton = () => {
@@ -9,7 +9,9 @@ const LoginButton = () => {
 		<>
 			<Button
 				intent={'primary'}
-				onConfirm={() => signIn('discord')}
+				onConfirm={() => {
+					document.location = AppEnv.apiBase + '/auth/discord'
+				}}
 				title="Sign In"
 			/>
 		</>

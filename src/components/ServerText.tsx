@@ -1,20 +1,12 @@
-'use client'
-
-import React from 'react'
-import useGuildConfig from '../lib/hooks/useGuildConfig'
-import useUserGuild from '../lib/hooks/useUserGuild'
+import { useActiveGuild } from '../state/react-query/useActiveGuild'
 
 const ServerText = () => {
-	const { guildId } = useUserGuild()
-
-	const { data } = useGuildConfig({
-		guildId
-	})
+	const guild = useActiveGuild()
 
 	return (
 		<p className="text-white">
-			{data?.discordGuildName ?? ''}{' '}
-			<span className="text-white/50">| Shield Dashboard</span>
+			{guild?.discordGuildName ?? ''}
+			{''} <span className="text-white/50">| Shield Dashboard</span>
 		</p>
 	)
 }

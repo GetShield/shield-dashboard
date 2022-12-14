@@ -3,7 +3,6 @@
 import { Listbox } from '@headlessui/react'
 import React, { useEffect } from 'react'
 import { IoArrowDownSharp, IoCheckmark } from 'react-icons/io5'
-import { useUserStore } from '../state/user/useUserStore'
 
 const ChannelSelect = ({ currentChannel }: { currentChannel: string }) => {
 	const channels = [
@@ -11,9 +10,6 @@ const ChannelSelect = ({ currentChannel }: { currentChannel: string }) => {
 		{ id: 3, name: '#degen', unavailable: false },
 		{ id: 4, name: '#spam', unavailable: false }
 	]
-
-	const selectedChannel = useUserStore(state => state.selectedChannel)
-	const setSelectedChannel = useUserStore(state => state.setSelectedChannel)
 
 	useEffect(() => {
 		setSelectedChannel(channels[0])
