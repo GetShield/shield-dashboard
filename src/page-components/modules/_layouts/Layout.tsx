@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { PropsWithChildren } from 'react'
 import { IoNotificationsSharp } from 'react-icons/io5'
 import { AuthWidget } from '../../../components/AuthWidget'
+import { GuildSelector } from '../../../components/GuildSelector'
 import ServerText from '../../../components/ServerText'
 import { useActiveGuild } from '../../../state/react-query/useActiveGuild'
 import { Tab } from './LayoutTabs'
@@ -23,6 +24,7 @@ export function Layout(props: PropsWithChildren) {
 						<div className="p-8">
 							<img src="/logo.png" alt="logo" height={200} />
 						</div>
+						<GuildSelector />
 						<div className="mt-8 flex w-full flex-col space-y-8">
 							<Tab tab="modules" />
 						</div>
