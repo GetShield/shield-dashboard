@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Button, { buttonClasses } from '../../../components/Button'
 import { useActiveGuild } from '../../../state/react-query/useActiveGuild'
+import { useGuildChannels } from '../../../state/react-query/useGuildChannels'
 import ContentWrapper from '../_components/ContentWrapper'
 import { Layout } from '../_layouts/Layout'
 
@@ -14,6 +15,11 @@ export function PageModules() {
 
 function PageInner() {
 	const guild = useActiveGuild()
+	const channels = useGuildChannels(guild?.discordGuildId)
+	const scamAlertsDiscordChannelName =
+		channels.data?.find(c => c.id === guild?.scamAlertDiscordChannelId)?.name ??
+		guild?.scamAlertDiscordChannelId ??
+		''
 
 	return (
 		<ContentWrapper
@@ -80,7 +86,7 @@ function PageInner() {
 							<p className="text-white">
 								Routing to{' '}
 								<span className="text-sky-400">
-									#{guild?.scanDiscordChannelId}
+									#{scamAlertsDiscordChannelName}
 								</span>{' '}
 								channel
 							</p>

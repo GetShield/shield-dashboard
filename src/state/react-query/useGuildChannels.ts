@@ -3,7 +3,7 @@ import { api } from '../api'
 import { vUser } from '../valtio/user'
 
 export function useGuildChannels(
-	guildId: string | null,
+	guildId: string | null | undefined,
 	kind?: 'text' | 'voice'
 ) {
 	return useQuery(
@@ -13,7 +13,7 @@ export function useGuildChannels(
 				return !kind ? v : v.filter(c => c.type === (kind === 'text' ? 0 : 2))
 			}),
 		{
-			enabled: guildId !== null
+			enabled: !!guildId
 		}
 	)
 }

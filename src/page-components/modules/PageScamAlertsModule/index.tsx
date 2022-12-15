@@ -38,10 +38,10 @@ function PageInner() {
 						onChange={v =>
 							setGuildForm({
 								...guildForm!,
-								scanDiscordChannelId: v
+								scamAlertDiscordChannelId: v
 							})
 						}
-						value={guildForm?.scanDiscordChannelId ?? null}
+						value={guildForm?.scamAlertDiscordChannelId ?? null}
 					/>
 				</div>
 

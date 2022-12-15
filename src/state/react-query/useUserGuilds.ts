@@ -23,16 +23,17 @@ export function fetchUserGuilds() {
 					id: number
 					discordGuildId: string
 					discordGuildName: string
-					adminDiscordRoleId: string
+					adminDiscordRoleId: string | null
 					scanEnabled: boolean
 					scanCount: number
-					scanDiscordChannelId: string
+					scanDiscordChannelId: string | null
 					simulateMintEnabled: boolean
 					simulateMintCount: number
-					simulateDiscordChannelId: string
+					simulateDiscordChannelId: string | null
 					phishingLinkDetectionEnabled: boolean
 					phishingLinkDetectionCount: number
-					phishingDiscordChannelId: string
+					phishingDiscordChannelId: string | null
+					scamAlertDiscordChannelId: string | null
 					contractScans: boolean
 					websiteLinkScans: boolean
 				}>
