@@ -28,14 +28,11 @@ function PageInner() {
 								Simulation Commands
 							</p>
 							<p className="text-white">
-								Contract scans are{' '}
-								<FeatureToggledText enabled={guild?.scanEnabled} />
+								!scan is <FeatureToggledText enabled={guild?.scanEnabled} />
 							</p>
 							<p className="mb-8 text-white">
-								Link scans are{' '}
-								<FeatureToggledText
-									enabled={guild?.phishingLinkDetectionEnabled}
-								/>
+								!simulateMint is{' '}
+								<FeatureToggledText enabled={guild?.simulateMintEnabled} />
 							</p>
 							<div className="flex h-full flex-col justify-end">
 								<Link href="/modules/simulation">
