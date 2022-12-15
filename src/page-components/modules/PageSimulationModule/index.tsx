@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import Button from '../../../components/Button'
-import { api, queryClient } from '../../../state/api'
+import ChannelSelect from '../../../components/ChannelSelect'
+import { api, apiSaveGuild, queryClient } from '../../../state/api'
 import { useOneWayDependencyState } from '../../../state/hook-helpers'
 import { useActiveGuild } from '../../../state/react-query/useActiveGuild'
 import { vUser } from '../../../state/valtio/user'
@@ -29,15 +30,7 @@ function PageInner() {
 
 	const mutation = useMutation(async () => {
 		if (!guildForm) return
-		await api.put(
-			'/updateServer?serverId=' + guildForm.discordGuildId,
-			guildForm,
-			{
-				headers: {
-					authorization: 'Bearer ' + vUser.tokens.access
-				}
-			}
-		)
+		await apiSaveGuild(guildForm)
 		queryClient.invalidateQueries()
 	})
 	const handleSaveChanges = () => mutation.mutate()
@@ -52,9 +45,16 @@ function PageInner() {
 			<div className="grid w-full grid-cols-2 gap-8">
 				<div className="flex flex-col space-y-4">
 					<p className="text-white">Scan Results Channel</p>
-					{/* <ChannelSelect
-						currentChannel={guildConfig?.scanDiscordChannelId ?? ''}
-					/> */}
+					<ChannelSelect
+						guildId={guild?.discordGuildId ?? null}
+						onChange={v =>
+							setGuildForm({
+								...guildForm!,
+								scanDiscordChannelId: v
+							})
+						}
+						value={guildForm?.scanDiscordChannelId ?? null}
+					/>
 				</div>
 				<div className="flex flex-col">
 					<p className="text-6xl font-medium text-primary">
