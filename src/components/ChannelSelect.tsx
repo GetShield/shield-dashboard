@@ -1,4 +1,5 @@
-import { Select } from '@mantine/core'
+import { Group, Select } from '@mantine/core'
+import { ComponentPropsWithoutRef, forwardRef } from 'react'
 import { useGuildChannels } from '../state/react-query/useGuildChannels'
 
 const ChannelSelect = (props: {
@@ -7,12 +8,17 @@ const ChannelSelect = (props: {
 	guildId: string | null
 }) => {
 	const channels = useGuildChannels(props.guildId, 'text')
-	const channelsData = (channels.data ?? []).map(c => {
-		return {
-			label: '#' + c.name,
-			value: c.id
-		}
-	})
+	const channelsData = (channels.data ?? [])
+		.sort((c1, c2) => {
+			return c1.position - c2.position
+		})
+		.map((c, _, arr) => {
+			return {
+				label: '#' + c.name,
+				value: c.id,
+				parent: c.parent
+			}
+		})
 
 	return (
 		<>
@@ -21,6 +27,7 @@ const ChannelSelect = (props: {
 					data={channelsData}
 					value={props.value}
 					onChange={props.onChange}
+					itemComponent={ChannelSelectItem}
 				/>
 			</div>
 		</>
@@ -28,3 +35,24 @@ const ChannelSelect = (props: {
 }
 
 export default ChannelSelect
+
+const ChannelSelectItem = forwardRef<
+	HTMLDivElement,
+	ComponentPropsWithoutRef<'div'> & {
+		label: string
+		value: string
+		parent?: {
+			name: string
+		}
+	}
+>(({ label, value, parent, ...others }, ref) => {
+	return (
+		<div ref={ref} {...others}>
+			<Group noWrap>
+				<div>
+					{parent?.name ? parent.name + ' > ' : ''} {label}
+				</div>
+			</Group>
+		</div>
+	)
+})

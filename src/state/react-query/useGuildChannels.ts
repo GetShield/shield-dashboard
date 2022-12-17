@@ -10,7 +10,13 @@ export function useGuildChannels(
 		['guild-channels', guildId],
 		() =>
 			fetchGuildChannels(guildId!).then(v => {
-				return !kind ? v : v.filter(c => c.type === (kind === 'text' ? 0 : 2))
+				const vv = v.map((c, _, arr) => {
+					return {
+						...c,
+						parent: arr.find(p => p.id === c.parent_id)
+					}
+				})
+				return !kind ? vv : vv.filter(c => c.type === (kind === 'text' ? 0 : 2))
 			}),
 		{
 			enabled: !!guildId
