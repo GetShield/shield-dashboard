@@ -58,7 +58,7 @@ function PageInner() {
 				</div>
 				<div className="flex flex-col">
 					<p className="text-6xl font-medium text-primary">
-						{guildForm?.scanCount ?? 0}
+						{guild?.scanCount ?? 0}
 					</p>
 					<p className="text-white">Shield scans performed all-time</p>
 				</div>
