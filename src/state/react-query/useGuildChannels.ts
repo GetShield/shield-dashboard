@@ -28,7 +28,7 @@ export async function fetchGuildChannels(guildId: string) {
 	return api
 		.get('/discord/channels?guildId=' + guildId, {
 			headers: {
-				Authorization: `Bearer ${vUser.tokens.access}`
+				Authorization: `Bearer ${await vUser.getAccessToken()}`
 			}
 		})
 		.then(

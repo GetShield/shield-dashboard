@@ -7,10 +7,10 @@ export const api = axios.create({
 	baseURL: AppEnv.apiBase
 })
 
-export function apiSaveGuild(guild: Record<string, any>) {
+export async function apiSaveGuild(guild: Record<string, any>) {
 	return api.put('/updateServer?serverId=' + guild.discordGuildId!, guild, {
 		headers: {
-			authorization: 'Bearer ' + vUser.tokens.access
+			authorization: 'Bearer ' + (await vUser.getAccessToken())
 		}
 	})
 }

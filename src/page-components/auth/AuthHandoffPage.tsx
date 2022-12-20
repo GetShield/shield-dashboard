@@ -9,8 +9,8 @@ export default function AuthHandoffPage() {
 	useEffect(() => {
 		if (typeof token === 'string') {
 			vUser.tokens = {
-				access: token,
-				refresh: null
+				access: null,
+				refresh: token
 			}
 			router.push('/modules')
 		}

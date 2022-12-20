@@ -6,15 +6,15 @@ import { vUser } from '../valtio/user'
 export function useUser() {
 	const sUser = useSnapshot(vUser)
 	return useQuery(['user'], () => fetchUser(), {
-		enabled: !!sUser.tokens.access
+		enabled: !!sUser.tokens.refresh
 	})
 }
 
-export function fetchUser() {
+export async function fetchUser() {
 	return api
 		.get('/auth/me', {
 			headers: {
-				Authorization: `Bearer ${vUser.tokens.access}`
+				Authorization: `Bearer ${await vUser.getAccessToken()}`
 			}
 		})
 		.then(

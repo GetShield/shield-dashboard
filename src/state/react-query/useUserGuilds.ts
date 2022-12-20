@@ -6,15 +6,15 @@ import { vUser } from '../valtio/user'
 export function useUserGuilds() {
 	const sUser = useSnapshot(vUser)
 	return useQuery(['user-guilds'], () => fetchUserGuilds(), {
-		enabled: !!sUser.tokens.access
+		enabled: !!sUser.tokens.refresh
 	})
 }
 
-export function fetchUserGuilds() {
+export async function fetchUserGuilds() {
 	return api
 		.get('/discord/guilds', {
 			headers: {
-				Authorization: `Bearer ${vUser.tokens.access}`
+				Authorization: `Bearer ${await vUser.getAccessToken()}`
 			}
 		})
 		.then(
