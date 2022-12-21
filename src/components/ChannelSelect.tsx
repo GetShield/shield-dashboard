@@ -1,10 +1,10 @@
-import { Group, Select } from '@mantine/core'
+import { Button, Group, Select } from '@mantine/core'
 import { ComponentPropsWithoutRef, forwardRef } from 'react'
 import { useGuildChannels } from '../state/react-query/useGuildChannels'
 
 const ChannelSelect = (props: {
 	value: string | null
-	onChange: (value: string) => any
+	onChange: (value: string | null) => any
 	guildId: string | null
 }) => {
 	const channels = useGuildChannels(props.guildId, 'text')
@@ -12,7 +12,7 @@ const ChannelSelect = (props: {
 		.sort((c1, c2) => {
 			return c1.position - c2.position
 		})
-		.map((c, _, arr) => {
+		.map(c => {
 			return {
 				label: '#' + c.name,
 				value: c.id,
@@ -22,13 +22,21 @@ const ChannelSelect = (props: {
 
 	return (
 		<>
-			<div className="w-72">
+			<div className="w-80 flex items-center justify-center">
 				<Select
 					data={channelsData}
 					value={props.value}
 					onChange={props.onChange}
 					itemComponent={ChannelSelectItem}
+					className="w-full"
 				/>
+				<Button
+					variant="subtle"
+					color="gray"
+					onClick={() => props.onChange(null)}
+				>
+					Reset
+				</Button>
 			</div>
 		</>
 	)
